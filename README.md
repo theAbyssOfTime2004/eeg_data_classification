@@ -1,2 +1,75 @@
-# eeg_data_classification
-eeg_data classification with CNN, KNN, SVM and XGBOOST
+eeg_data classification with CNN, KNN, SVM and XGBOOST.
+# 1. Introduction
+- Data Source: https://www.kaggle.com/datasets/inancigdem/eeg-data-for-mental-attention-state-detection/data
+- data description: EEG data collected over 25 hours from 5 participants, each controlling a train simulator using "Microsoft Train Simulator" for 35-55 minutes on a simple route.
+- Mental states label:
+  - Focused
+  - Unfocused
+  - Drowys
+- Equipment Setup:
+  - The study used a modified Epoc EEG headset with 12 channels, sampling at 128 Hz with 0.51 μV resolution and 0.2–43 Hz bandwidth.
+  - The headset was reconfigured to place electrodes over frontal and parietal regions, using electrode positions F3-Fz-F4-C3-Cz-C4-T3-T4-T5-T6-Pz in the 10–20 system.
+  - Four leads (T3, T4, T5, T6) served as current and reference channels, while 7 leads (F3, F4, Fz, C3, C4, Cz, Pz) collected data.
+  - A custom Matlab script based on eeglogger.m was used for data acquisition
+- Procedure:
+  - First 10 minutes: Focused control, closely monitoring the screen.
+  - Next 10 minutes: Stopped controlling, not paying attention but still alert.
+  - Last 10 minutes: Relaxing, eyes closed, allowed to doze off if desired
+- Implementation Process:
+  - Each participant completed 7 experiments (1 per day), first 2 for familiarization, 5 subsequent ones for data collection.
+  - Experiments conducted from 7-9 PM to facilitate easier drowsiness in the final stage.
+  - Participants were monitored and filmed to ensure adherence to experimental structure, with no interruptions like moving or talking.
+    ![image](https://github.com/user-attachments/assets/0071c9b6-6c58-4380-b455-762efe159b27)
+- Raw Data Characteristics:
+
+  - Array: o.data, size: {number of samples} × 25
+  - Sampling Frequency: 128 Hz
+  - EEG Channels: Channels 4-17 (14 channels)
+  - EEG Channel List:
+
+    - 4: ED_AF3
+    - 5: ED_F7
+    - 6: ED_F3
+    - 7: ED_FC5
+    - 8: ED_T7
+    - 9: ED_P7
+    - 10: ED_O1
+    - 11: ED_O2
+    - 12: ED_P8
+    - 13: ED_T8
+    - 14: ED_FC6
+    - 15: ED_F4
+    - 16: ED_F8
+    - 17: ED_AF4
+  - Other Data Channels:
+- Channels 1-3 and 18-25 contain metadata, sensor information, timestamps, and system signals
+- Actual EEG signal data is found in channels 4-17
+  # 2. Notebook Directory
+- 1. EEG Data Overview.ipynb: Analysis and comprehensive evaluation of raw EEG data
+- 2. ICA of data and understanding data through EEG drawings and descriptions.ipynb: Perform ICA and data visualization
+- 3. feature_extraction_for_SVM_and_KNN_model.ipynb: Perform data input for SVM and KNN models
+- 4. SVM_model baseline model.ipynb: SVM model implementation
+- 5. Feature Extraction Cnn.ipynb: Obtain input data for CNN model
+- 6. cnn_model.ipynb: CNN model implementation
+- 7. XGBOOST_feature extraction and trainning model.ipynb: Input data for XGBOOST and implementation
+- 8. Compare_model.ipynb: Comparison between models
+  # 4. Conclusion
+- Content:
+  - Developed passive EEG BCI to classify three mental states: passive attention, relaxation, and drowsiness.
+  - SVM model achieved 86.78% peak accuracy, 85.78% average accuracy
+- Potential Applications:
+  - Driver Safety
+  - Detect driver inattention/drowsiness
+  - Provide timely warnings
+- Clinical Use
+  - Monitor patient mental states
+  - Extend neurological assessment techniques
+  - Analyze anesthesia depth via EEG signals
+- Broader Impact
+  - Develop mental state detection systems
+  - Applications in security and medical domains
+- Distinctive Significance:
+  - Advanced EEG signal parameter analysis
+  - New insights into mental state neurological representation
+  - Innovative Brain-Computer Interface application
+  - Potential to improve monitoring safety and effectiveness
